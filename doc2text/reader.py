@@ -41,8 +41,10 @@ class Reader:
           crops.append(Crop([[box[0], box[1]], [box[2], box[3]]], img=cropped))
       crops = sorted(crops)
       crops_text = {}
+      i = 0
       for crop in crops:
           text = self.recognizer.run(crop.img)
-          crops_text[text] = crop
+          crops_text['crop_'+str(i)] = (crop, text)
+          i += 1
 
       return crops_text
